@@ -1,0 +1,187 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header Styles */
+.header {
+  background-color: #535353;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #e4e4e4;
+  text-decoration: none;
+}
+
+.navLink {
+  margin-left: 1rem;
+  color: #e4e4e4;
+  text-decoration: none;
+}
+
+.navLink:hover {
+  color: #aeaeae;
+}
+
+/* Footer Styles */
+.footer {
+  flex-shrink: 0;
+  background-color: #f3f4f6;
+  padding: 1rem 0;
+  text-align: center;
+  color: #4b5563;
+}
+
+/* Blog List Styles */
+.blogList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.blogPost {
+  display: flex;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.blogPostImage {
+  flex: 0 0 200px;
+}
+
+.blogMeta {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.blogPostContent {
+  flex: 1;
+  padding: 1rem;
+}
+
+.blogTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.blogExcerpt {
+  color: #4b5563;
+}
+
+/* Page Styles */
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.mainContent {
+  flex: 1 0 auto;
+  padding: 2rem 0;
+}
+
+.pageTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+/* Form Styles */
+.formWrapper {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.formTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.formContainer {
+  width: 100%;
+}
+
+.formGroup {
+  margin-bottom: 1rem;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.formInput {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  color: #ffffff;
+  background-color: #3b82f6;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: #2563eb;
+}
+
+.formLink {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.formLink a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.formLink a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .blogPost {
+    flex-direction: column;
+  }
+
+  .blogPostImage {
+    flex: 0 0 auto;
+    height: 200px;
+    width: 100%;
+  }
+}
+
