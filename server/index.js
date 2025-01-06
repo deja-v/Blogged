@@ -3,7 +3,10 @@ import express from "express"
 import connectDB from "./connection.js";
 import cors from 'cors';
 import userRouter from "./routes/user.js";
+import postRouter from "./routes/post.js";
 import auth from './middlewares/auth.js';
+import { Post } from './models/post.model.js';
+import { User } from './models/user.model.js';
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -29,11 +32,19 @@ cors({
 app.use(express.urlencoded({extended:false}))
 app.use(express.json());
 
-app.get("/",auth, (req, res) => {
-    res.send("Hello World!");
+app.get("/", async (req, res) => {
+  try {
+    const posts = await Post.find();
+    res.json(posts);
+  } catch (error) {
+    console.log("error fetching posts", error);
+    res.status(500).json({ msg: "error fetching posts" });
+  }
 });
 
 app.use("/user", userRouter);
+app.use("/",auth, postRouter);
+
 
 
 app.listen(port, () => {

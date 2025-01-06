@@ -6,7 +6,7 @@ async function auth(req,res,next) {
         if(!token) return res.status(401).json({msg:"token not found"});
         const decoded = jwt.verify(token, process.env.SECRET_KEY);
         if(!decoded) return res.status(401).json({msg:"invalid or expired token"});
-        req.user = decoded;
+        req.user = decoded.entry;
         next();
     } catch (error) {
         console.log("error authenticating user",error);
