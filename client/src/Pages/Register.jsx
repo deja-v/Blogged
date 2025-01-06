@@ -6,10 +6,29 @@ export default function Register() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Here you would typically handle the registration logic
-    console.log('Registration attempt', { name, email, password })
+    const response = await fetch('http://localhost:3000/user/register', {
+    
+      method: "POST",
+      body: JSON.stringify({
+          name,
+          email,
+          password
+      }),
+      headers: {
+          "Content-type": "application/json; charset=UTF-8"
+      }
+  })
+  
+  if(response.status === 201){
+      alert("Registration successful")
+      window.location.href = "/login"
+  }
+  else
+      alert("Registration failed")
+  
+    
   }
 
   return (

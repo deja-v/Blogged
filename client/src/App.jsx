@@ -7,6 +7,8 @@ import HomeLayout from './homeLayout.jsx'
 import { Routes, Route } from 'react-router-dom'
 import Login from './Pages/Login.jsx'
 import Register from './Pages/Register.jsx'
+import CreatePost from './Pages/createPost.jsx'
+import Post from './Pages/post.jsx'
 
 
 
@@ -15,8 +17,10 @@ export default function Home() {
     <Routes>
       <Route element={<HomeLayout/>}>
         <Route path='/' element={<MainContent/>}/>
+        <Route path='/:id' element={<Post/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
+        <Route path='/create' element={<CreatePost/>}/>
       </Route>
     </Routes>
   )

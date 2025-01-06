@@ -1,15 +1,43 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
 
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     
-    console.log('Login attempt', { email, password })
+    const response = await fetch('http://localhost:3000/user/login',{
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        password
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+    }
+    });
+    const data = await response.json()
+		console.log(data)
+		if(data.user){
+			alert("login successful")
+			localStorage.setItem("user",JSON.stringify(data))
+			window.location.href = '/create'
+		}
+		else {
+      console.log(response.status)
+			alert("please check email or password")
+		}
   }
+
+  useEffect(()=>{
+    if(localStorage.getItem("user")){
+      window.location.reload();
+      localStorage.removeItem("user")
+    }
+    
+  },[])
 
   return (
     <div className="pageContainer">

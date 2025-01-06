@@ -18,16 +18,15 @@ async function handleUserLogin(req,res) {
             email,
             password
         })
-        if(!entry) return res.json({"status":"error", "user":false});
+        const name = entry.name;
+        if(!entry) return res.status(401).json({"status":"error", "user":false});
         const token = jwt.sign({
             entry
         }, process.env.SECRET_KEY)
-        // res.cookie("user",token);
-        // res.cookie('jwt', token, { httpOnly: true, secure: false });
-        return res.status(200).json({"status":"ok", "user":token});
+        return res.status(200).json({"status":"ok","name":name, "user":token});
     } catch (error) {
         console.log("error logging in");
-        res.send("error logging in")
+        res.status(400).json({"status":"error logging in","user":false})
     }
 }
 

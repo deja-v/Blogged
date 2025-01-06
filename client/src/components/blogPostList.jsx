@@ -1,27 +1,38 @@
+import { useEffect } from "react"
+import { Link } from "react-router-dom"
+
 export default function BlogPostList({ posts }) {
-    return (
+  
+  return (
+      
       <div className="blogList">
         {posts.map((post) => (
-          <div key={post.id} className="blogPost">
+          <div key={post._id}>
+          <Link to={`/${post._id}`} style={{textDecoration:"none", color:"black"}}>
+          <div className="blogPost">
+            
             <div className="blogPostImage">
                 <img
-                src={post.imageUrl}
+                src={post.imageUrl || "https://via.placeholder.com/200"}
                 alt={post.title}
                 width={200}
                 height={200}
-                objectFit="cover"
+                objectfit="cover"
                 />
             </div>
             <div className="blogPostContent">
                 <h2 className="blogTitle">{post.title}</h2>
                 <p className="blogMeta">
-                    By {post.author} | Published on {post.date}
+                    By {post.userName} | Published on {post.formattedCreatedOn}
                 </p>
-                <p className="blogExcerpt">{post.excerpt}</p>
+                <p className="blogExcerpt">{post.heading}</p>
             </div>
+          </div>
+          </Link>
           </div>
         ))}
       </div>
+      
     )
   }
   

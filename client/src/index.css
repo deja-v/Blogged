@@ -91,6 +91,79 @@ body {
   color: #4b5563;
 }
 
+/* Full Blog Post Styles */
+.blogPostFull {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.blogPostTitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #111827;
+}
+
+.blogPostMeta {
+  font-size: 1rem;
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+}
+
+.blogPostImageFull {
+  margin-bottom: 1.5rem;
+}
+
+.blogPostContent {
+  font-size: 1.125rem;
+  color: #374151;
+}
+
+/* Create Post Form Styles */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  resize: vertical;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  color: #ffffff;
+  background-color: #3b82f6;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #2563eb;
+}
+
+
 /* Page Styles */
 .pageContainer {
   display: flex;
@@ -170,6 +243,25 @@ body {
 
 .formLink a:hover {
   text-decoration: underline;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: #6c6c6c;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.welcomeMessage {
+  font-size: 1rem;
+  margin-right: 1rem;
+  color: #e7e7e7;
+  
 }
 
 /* Responsive Styles */

@@ -41,6 +41,16 @@ app.get("/", async (req, res) => {
     res.status(500).json({ msg: "error fetching posts" });
   }
 });
+app.get("/:id", async (req, res) => {
+  try {
+    
+    const post = await Post.findById(req.params.id);
+    res.json(post);
+  } catch (error) {
+    console.log("error fetching post", error);
+    res.status(500).json({ msg: "error fetching post" });
+  }
+});
 
 app.use("/user", userRouter);
 app.use("/",auth, postRouter);
