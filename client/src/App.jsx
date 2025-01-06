@@ -11,7 +11,6 @@ import CreatePost from './Pages/createPost.jsx'
 import Post from './Pages/post.jsx'
 
 
-
 export default function Home() {
   return (
     <Routes>
