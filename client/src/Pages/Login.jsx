@@ -23,7 +23,7 @@ export default function Login() {
 		if(data.user){
 			alert("login successful")
 			localStorage.setItem("user",JSON.stringify(data))
-			window.location.href = '/create'
+			window.location.href = 'https://blogged-nine.vercel.app/create'
 		}
 		else {
       console.log(response.status)
