@@ -37,7 +37,7 @@ export default function MainContent(){
 
     useEffect(()=>{
         async function getPosts() {
-          const response = await fetch("http://localhost:3000")
+          const response = await fetch("https://blogged-ujz4.onrender.com")
           const data = await response.json()
           const sortedPosts = [...data].sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
           const formattedPosts = formatDatesForPosts(sortedPosts);

@@ -20,7 +20,7 @@ export default function Post() {
 
   useEffect(()=>{
     async function getPost() {
-      const response = await fetch(`http://localhost:3000/${params.id}`)
+      const response = await fetch(`https://blogged-ujz4.onrender.com/${params.id}`)
       const data = await response.json()
       setPost(data)
     }
