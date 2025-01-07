@@ -4,20 +4,22 @@ export default function CreatePost() {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [body, setBody] = useState('')
-
+  const [files, setFiles] = useState('');
+  
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const formData = new FormData();
+
+    formData.append("title", title);
+    formData.append("heading", description);
+    formData.append("body", body);
+    formData.append("image", files[0]); 
     const token = JSON.parse(localStorage.getItem("user")).user
     const response = await fetch('http://localhost:3000',{
         method: "POST",
-        body: JSON.stringify({
-            title,
-            heading: description,
-            body
-        }),
+        body: formData,
         headers: {
             "Authorization": `Bearer ${token}`,
-            "Content-type": "application/json; charset=UTF-8"
         }
     })
     if(response.status === 201){
@@ -60,6 +62,11 @@ export default function CreatePost() {
                 required
                 className="form-input"
               />
+            </div>
+            <div className="form-group">
+              <label htmlFor="image">Upload Image</label>
+                <input type="file" id="image"
+                onChange={(e) => setFiles(e.target.files)} />
             </div>
             <div className="form-group">
               <label htmlFor="body">Body</label>

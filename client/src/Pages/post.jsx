@@ -40,7 +40,7 @@ export default function Post() {
                 <p className="blogPostMeta">By {post.userName} | Published on {formatDateTime(post.createdOn)}</p>
                 <div className="blogPostImageFull">
                     <img
-                        src={post.imageUrl}
+                        src={post.image}
                         alt={post.title}
                         width={800}
                         height={400}

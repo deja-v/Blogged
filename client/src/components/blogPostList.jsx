@@ -13,7 +13,7 @@ export default function BlogPostList({ posts }) {
             
             <div className="blogPostImage">
                 <img
-                src={post.imageUrl || "https://via.placeholder.com/200"}
+                src={post.image || "https://via.placeholder.com/200"}
                 alt={post.title}
                 width={200}
                 height={200}
