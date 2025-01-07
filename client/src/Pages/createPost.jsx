@@ -15,7 +15,7 @@ export default function CreatePost() {
     formData.append("body", body);
     formData.append("image", files[0]); 
     const token = JSON.parse(localStorage.getItem("user")).user
-    const response = await fetch('https://blogged-ujz4.onrender.com',{
+    const response = await fetch('https://blogged-ujz4.onrender.com/',{
         method: "POST",
         body: formData,
         headers: {
