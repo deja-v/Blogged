@@ -42,9 +42,8 @@ export default function Post() {
                     <img
                         src={post.image}
                         alt={post.title}
-                        width={800}
-                        height={400}
-                        objectfit="cover"
+                        
+                        style={{objectFit: "cover"}}
                     />
                 </div>
                 <div className="blogPostContent">

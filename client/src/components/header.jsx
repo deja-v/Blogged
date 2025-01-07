@@ -21,14 +21,16 @@ export default function Header() {
           </Link>
           
           }
-          {!user && <nav>
+          {!user && 
+          <nav>
             <Link to="/login" className="navLink">
               Login
             </Link>
             <Link to="/register" className="navLink">
               Register
             </Link>
-          </nav>}
+          </nav>
+         }
             {user && <>
             <span className="welcomeMessage"><strong>Welcome {user.name.split(' ')[0] || "User"}!</strong></span>
             <nav>

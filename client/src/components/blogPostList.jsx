@@ -15,8 +15,8 @@ export default function BlogPostList({ posts }) {
                 <img
                 src={post.image || "https://via.placeholder.com/200"}
                 alt={post.title}
-                width={200}
-                height={200}
+                width={181}
+                height={110}
                 objectfit="cover"
                 />
             </div>
