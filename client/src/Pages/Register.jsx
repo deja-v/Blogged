@@ -23,7 +23,7 @@ export default function Register() {
   
   if(response.status === 201){
       alert("Registration successful")
-      window.location.href = "https://blogged-nine.vercel.app/login"
+      window.location.href = "http://blogged-nine.vercel.app/login"
   }
   else
       alert("Registration failed")
