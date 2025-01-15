@@ -8,7 +8,7 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const response = await fetch('http://localhost:3000/user/register', {
+    const response = await fetch('https://blogged-ujz4.onrender.com/user/register', {
     
       method: "POST",
       body: JSON.stringify({
@@ -23,7 +23,7 @@ export default function Register() {
   
   if(response.status === 201){
       alert("Registration successful")
-      window.location.href = "http://localhost:5173/login"
+      window.location.href = "https://blogged-nine.vercel.app/login"
   }
   else
       alert("Registration failed")

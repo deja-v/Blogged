@@ -8,7 +8,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     
-    const response = await fetch('http://localhost:3000/user/login',{
+    const response = await fetch('https://blogged-ujz4.onrender.com/user/login',{
       method: "POST",
       body: JSON.stringify({
         email,
@@ -23,7 +23,7 @@ export default function Login() {
 		if(data.user){
 			alert("login successful")
 			localStorage.setItem("user",JSON.stringify(data))
-			window.location.href = 'http://localhost:5173/create'
+			window.location.href = 'https://blogged-nine.vercel.app/create'
 		}
 		else {
       console.log(response.status)
