@@ -34,6 +34,7 @@ async function handleCreatePost(req, res) {
         //     imageData = results
         // }
         const results = await uploadToCloudinary(req.file.path, "Blogged_images");
+        console.log(results.url);
         const response = await Post.create({
             title,
             heading,
