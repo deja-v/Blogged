@@ -1,7 +1,8 @@
 import { useEffect } from "react"
 import { Link } from "react-router-dom"
+import { MdOutlineDelete } from "react-icons/md";
 
-export default function BlogPostList({ posts }) {
+export default function BlogPostList({ posts, user }) {
   
   return (
       
@@ -27,8 +28,11 @@ export default function BlogPostList({ posts }) {
                 </p>
                 <p className="blogExcerpt">{post.heading}</p>
             </div>
+            
           </div>
+          
           </Link>
+          
           </div>
         ))}
       </div>

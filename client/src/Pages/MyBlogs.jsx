@@ -1,4 +1,4 @@
-import BlogPostList from "./components/blogPostList"
+import BlogPostList from "../components/blogPostList"
 import { useEffect,useState } from "react"
 // const samplePosts = [
 //     { id: 1, title: "Getting Started with React", author: "John Doe", date: "2023-05-01", excerpt: "Learn the basics of React and start building your first app.", imageUrl: "/placeholder.svg?height=200&width=200" },
@@ -37,12 +37,27 @@ export default function MainContent(){
 
     useEffect(()=>{
         async function getPosts() {
-          const response = await fetch("http://localhost:3000/posts")
+          if(!localStorage.getItem("user")){
+            alert("Please login first")
+            window.location.href = "http://localhost:5173/login"
+          }
+          const token = JSON.parse(localStorage.getItem("user")).user
+          const response = await fetch("http://localhost:3000/myposts",{
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+            }
+          })
           const data = await response.json()
-          const sortedPosts = [...data].sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+         
+          const posts = data.data
+          console.log(data);
+          
+          const sortedPosts = [...posts].sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
           const formattedPosts = formatDatesForPosts(sortedPosts);
           
           setSamplePosts(formattedPosts)
+          
         }
         getPosts();
       },[])
@@ -50,8 +65,8 @@ export default function MainContent(){
     return (
         <main className="mainContent">
             <div className="container">
-            <h1 className="pageTitle">Latest Blog Posts</h1>
-            <BlogPostList posts={samplePosts} user={false} />
+            <h1 className="pageTitle">My Blog Posts</h1>
+            <BlogPostList posts={samplePosts} user={true}/>
             </div>
         </main>
     )

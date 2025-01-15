@@ -17,10 +17,10 @@ function formatDateTime(dateString) {
 export default function Post() {
     const params = useParams();
     const [post, setPost] = useState({})
-
+    const userName = localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")).name:"";
   useEffect(()=>{
     async function getPost() {
-      const response = await fetch(`https://blogged-ujz4.onrender.com/${params.id}`)
+      const response = await fetch(`http://localhost:3000/posts/${params.id}`)
       const data = await response.json()
       setPost(data)
     }
@@ -30,6 +30,23 @@ export default function Post() {
     return <h1>Post not found</h1>
   }
 
+  async function onDelete(id){
+    const token = JSON.parse(localStorage.getItem("user")).user
+      const response = await fetch("http://localhost:3000/delete",{
+        method: "DELETE",
+        body: JSON.stringify({
+          postId: id
+        }),
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-type": "application/json; charset=UTF-8"
+        }
+        
+      })
+      console.log(response)
+      window.location.href = "http://localhost:5173/myblogs"
+  }
+
   return (
     <div className="pageContainer">
       <main className="mainContent">
@@ -37,7 +54,15 @@ export default function Post() {
             <article className="blogPostFull">
                 <Link to="/" className="back-link">&#x25c0; Back to Home</Link>
                 <h1 className="blogPostTitle">{post.title}</h1>
-                <p className="blogPostMeta">By {post.userName} | Published on {formatDateTime(post.createdOn)}</p>
+                <div className="postHead">
+                  <p className="blogPostMeta">By {post.userName} | Published on {formatDateTime(post.createdOn)}</p>
+                  {userName && userName===post.userName && <button
+                    onClick={() => onDelete(params.id)}
+                    className="deleteButton"
+                  >
+                    Delete
+                  </button>}
+                </div>
                 <div className="blogPostImageFull">
                     <img
                         src={post.image}

@@ -23,7 +23,6 @@ const uploadToCloudinary = async (path, folder = "Blogged_images") => {
 async function handleCreatePost(req, res) {
     try {
         const { title, heading, body, image } = req.body;
-        console.log(req.body)
         const createdBy = req.user._id;
         const entry = await User.findById(createdBy);
         if (!entry) {
@@ -34,8 +33,6 @@ async function handleCreatePost(req, res) {
         //     const results = await uploadToCloudinary(image, "my-profile")
         //     imageData = results
         // }
-        console.log(req.file);
-        
         const results = await uploadToCloudinary(req.file.path, "Blogged_images");
         const response = await Post.create({
             title,
@@ -54,4 +51,31 @@ async function handleCreatePost(req, res) {
     }
 }
 
-export { handleCreatePost };
+async function handleUserPosts(req,res) {
+    try {
+        const user = req.user;
+        const entries = await Post.find({userName:user.name})
+        console.log(user)
+        res.status(200).json({msg: "success",data:entries})
+    } catch (error) {
+        console.log("error fetching posts ", error);
+        res.status(500).json({ msg: "error fetching posts" });
+    }
+    
+}
+
+async function handlePostDelete(req,res) {
+    try {
+        const {postId} = req.body
+        console.log(postId)
+        const entry = await Post.deleteOne({_id:postId})
+        console.log({ msg: "post deleted successfully" });
+         
+        res.status(200).json({ msg: "post deleted successfully" });
+    } catch (error) {
+        console.log("error deleting post ", error);
+        res.status(500).json({ msg: "error deleting post" });
+    }
+}
+
+export { handleCreatePost, handleUserPosts, handlePostDelete };

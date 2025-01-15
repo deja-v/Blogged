@@ -9,6 +9,7 @@ import Login from './Pages/Login.jsx'
 import Register from './Pages/Register.jsx'
 import CreatePost from './Pages/createPost.jsx'
 import Post from './Pages/post.jsx'
+import MyBlogs from './Pages/MyBlogs.jsx'
 
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/create' element={<CreatePost/>}/>
+        <Route path='/myblogs' element={<MyBlogs/>}/>
       </Route>
     </Routes>
   )
