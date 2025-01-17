@@ -15,7 +15,7 @@ export default function CreatePost() {
     formData.append("body", body);
     formData.append("image", files[0]); 
     const token = JSON.parse(localStorage.getItem("user")).user
-    const response = await fetch('https://blogged-ujz4.onrender.com',{
+    const response = await fetch('http://localhost:3000',{
         method: "POST",
         body: formData,
         headers: {
@@ -27,7 +27,7 @@ export default function CreatePost() {
         setTitle('')
         setDescription('')
         setBody('')
-        window.location.href = "https://blogged-nine.vercel.app"
+        window.location.href = "http://localhost:5173"
     }
     else{
         alert("Blog Post failed")

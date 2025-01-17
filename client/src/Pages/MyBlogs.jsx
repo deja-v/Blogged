@@ -39,10 +39,10 @@ export default function MainContent(){
         async function getPosts() {
           if(!localStorage.getItem("user")){
             alert("Please login first")
-            window.location.href = "https://blogged-nine.vercel.app/login"
+            window.location.href = "http://localhost:5173/login"
           }
           const token = JSON.parse(localStorage.getItem("user")).user
-          const response = await fetch("https://blogged-ujz4.onrender.com/myposts",{
+          const response = await fetch("http://localhost:3000/myposts",{
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,

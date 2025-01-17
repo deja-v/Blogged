@@ -20,8 +20,9 @@ export default function Post() {
     const userName = localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")).name:"";
   useEffect(()=>{
     async function getPost() {
-      const response = await fetch(`https://blogged-ujz4.onrender.com/posts/${params.id}`)
+      const response = await fetch(`http://localhost:3000/posts/${params.id}`)
       const data = await response.json()
+      
       setPost(data)
     }
     getPost()
@@ -32,7 +33,7 @@ export default function Post() {
 
   async function onDelete(id){
     const token = JSON.parse(localStorage.getItem("user")).user
-      const response = await fetch("https://blogged-ujz4.onrender.com/delete",{
+      const response = await fetch("http://localhost:3000/delete",{
         method: "DELETE",
         body: JSON.stringify({
           postId: id
@@ -44,7 +45,7 @@ export default function Post() {
         
       })
       console.log(response)
-      window.location.href = "https://blogged-nine.vercel.app/myblogs"
+      window.location.href = "http://localhost:5173/myblogs"
   }
 
   return (

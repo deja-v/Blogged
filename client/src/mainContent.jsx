@@ -34,11 +34,12 @@ function formatDate(dateString) {
 
 export default function MainContent(){
     const [samplePosts, setSamplePosts] = useState([])
-
+    let show = samplePosts.length? true: false
     useEffect(()=>{
         async function getPosts() {
-          const response = await fetch("https://blogged-ujz4.onrender.com/posts")
+          const response = await fetch("http://localhost:3000/posts")
           const data = await response.json()
+          if(!data.length) return
           const sortedPosts = [...data].sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
           const formattedPosts = formatDatesForPosts(sortedPosts);
           
@@ -50,7 +51,8 @@ export default function MainContent(){
     return (
         <main className="mainContent">
             <div className="container">
-            <h1 className="pageTitle">Latest Blog Posts</h1>
+            {show && <h1 className="pageTitle">Latest Blog Posts</h1>}
+            {!show && <h1 className="pageTitle">No Blog Posts to Show</h1>}
             <BlogPostList posts={samplePosts} user={false} />
             </div>
         </main>

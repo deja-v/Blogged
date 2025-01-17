@@ -11,6 +11,29 @@ import { User } from './models/user.model.js';
 const app = express();
 const port = process.env.PORT || 3000;
 
+//
+import multer from "multer";
+import { v2 as cloudinary } from "cloudinary";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
+
+cloudinary.config({
+    cloud_name: `${process.env.CLOUD_NAME}`,
+    api_key: `${process.env.API_KEY}`,
+    api_secret: `${process.env.API_SECRET}`,
+});
+
+// Configure Cloudinary storage for Multer
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "Blogged_images", // Folder in Cloudinary
+    allowed_formats: ["jpg", "png", "jpeg"], // Allowed file formats
+  },
+});
+
+const upload = multer({ storage });
+//
+
 connectDB();
 
 const allowedOrigins = [
@@ -55,7 +78,7 @@ app.get("/posts/:id", async (req, res) => {
 });
 
 app.use("/user", userRouter);
-app.use("/",auth, postRouter);
+app.use("/",upload.single("image"),auth, postRouter);
 
 
 app.listen(port, () => {

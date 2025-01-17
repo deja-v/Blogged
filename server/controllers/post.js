@@ -2,27 +2,13 @@ import { Post } from "../models/post.model.js";
 import jwt from "jsonwebtoken";
 import { User } from "../models/user.model.js";
 
-import {v2 as cloudinary} from 'cloudinary';
 
-cloudinary.config({
-    cloud_name: `${process.env.CLOUD_NAME}`,
-    api_key: `${process.env.API_KEY}`,
-    api_secret: `${process.env.API_SECRET}`,
-});
 
-const uploadToCloudinary = async (path, folder = "Blogged_images") => {
-    try {
-      const data = await cloudinary.uploader.upload(path, { folder: folder });
-      return { url: data.secure_url, publicId: data.public_id };
-    } catch (err) {
-      console.log(err);
-      throw err;
-    }
-  };
+
 
 async function handleCreatePost(req, res) {
     try {
-        const { title, heading, body, image } = req.body;
+        const { title, heading, body } = req.body;
         const createdBy = req.user._id;
         const entry = await User.findById(createdBy);
         if (!entry) {
@@ -33,13 +19,18 @@ async function handleCreatePost(req, res) {
         //     const results = await uploadToCloudinary(image, "my-profile")
         //     imageData = results
         // }
-        const results = await uploadToCloudinary(req.file.path, "Blogged_images");
+        // // const results = await uploadToCloudinary(req.file.path, "Blogged_images");
+        // console.log(results);
+        const image = req.file ? req.file.path : null; // Cloudinary URL
+        if (!image) {
+          console.log("image upload failed")
+        }
         const response = await Post.create({
             title,
             heading,
             body,
             userName: entry.name,
-            image: results.url,
+            image: req.file.path,
             createdBy,
             createdOn: new Date()
         })
