@@ -19,12 +19,17 @@ async function handleCreatePost(req, res) {
         //     const results = await uploadToCloudinary(image, "my-profile")
         //     imageData = results
         // }
+<<<<<<< HEAD
         // // const results = await uploadToCloudinary(req.file.path, "Blogged_images");
         // console.log(results);
         const image = req.file ? req.file.path : null; // Cloudinary URL
         if (!image) {
           console.log("image upload failed")
         }
+=======
+        const results = await uploadToCloudinary(req.file.path, "Blogged_images");
+        console.log(results.url);
+>>>>>>> f70e67f47596fa2987199c200cd3b19604f7579d
         const response = await Post.create({
             title,
             heading,
