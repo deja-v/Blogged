@@ -39,7 +39,8 @@ export default function MainContent() {
     async function getPosts() {
       if (!localStorage.getItem("user")) {
         alert("Please login first");
-        window.location.href = "http://localhost:5173/login";
+        // window.location.href = "http://localhost:5173/login";
+        window.location.href = "https://blogged-nine.vercel.app/login";
       }
       const token = JSON.parse(localStorage.getItem("user")).user;
       // const response = await fetch("http://localhost:3000/myposts", {

@@ -35,6 +35,8 @@ export default function CreatePost() {
         setDescription('')
         setBody('')
         window.location.href = "http://localhost:5173"
+        window.location.href = "https://blogged-nine.vercel.app/"
+
     }
     else{
         const data = await response.json()

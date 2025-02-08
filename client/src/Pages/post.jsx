@@ -56,7 +56,9 @@ export default function Post() {
       },
     });
     console.log(response);
-    window.location.href = "http://localhost:5173/myblogs";
+    // window.location.href = "http://localhost:5173/myblogs";
+    window.location.href = "https://blogged-nine.vercel.app/myblogs";
+
   }
 
   return (
