@@ -15,13 +15,20 @@ export default function CreatePost() {
     formData.append("body", body);
     formData.append("image", files[0]); 
     const token = JSON.parse(localStorage.getItem("user")).user
-    const response = await fetch('http://localhost:3000/create',{
-        method: "POST",
-        body: formData,
-        headers: {
-            "Authorization": `Bearer ${token}`,
-        }
-    })
+    // const response = await fetch('http://localhost:3000/create',{
+    //     method: "POST",
+    //     body: formData,
+    //     headers: {
+    //         "Authorization": `Bearer ${token}`,
+    //     }
+    // })
+    const response = await fetch('https://blogged-ujz4.onrender.com/create',{
+      method: "POST",
+      body: formData,
+      headers: {
+          "Authorization": `Bearer ${token}`,
+      }
+  })
     if(response.status === 201){
         alert("Blog Posted successfully")
         setTitle('')

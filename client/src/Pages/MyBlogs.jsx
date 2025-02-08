@@ -42,7 +42,13 @@ export default function MainContent() {
         window.location.href = "http://localhost:5173/login";
       }
       const token = JSON.parse(localStorage.getItem("user")).user;
-      const response = await fetch("http://localhost:3000/myposts", {
+      // const response = await fetch("http://localhost:3000/myposts", {
+      //   method: "GET",
+      //   headers: {
+      //     Authorization: `Bearer ${token}`,
+      //   },
+      // });
+      const response = await fetch("https://blogged-ujz4.onrender.com/myposts", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,

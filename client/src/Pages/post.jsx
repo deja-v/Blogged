@@ -35,7 +35,17 @@ export default function Post() {
 
   async function onDelete(id) {
     const token = JSON.parse(localStorage.getItem("user")).user;
-    const response = await fetch("http://localhost:3000/delete", {
+    // const response = await fetch("http://localhost:3000/delete", {
+    //   method: "DELETE",
+    //   body: JSON.stringify({
+    //     postId: id,
+    //   }),
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //     "Content-type": "application/json; charset=UTF-8",
+    //   },
+    // });
+    const response = await fetch("https://blogged-ujz4.onrender.com/delete", {
       method: "DELETE",
       body: JSON.stringify({
         postId: id,

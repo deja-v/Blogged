@@ -8,7 +8,18 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:3000/user/register", {
+    // const response = await fetch("http://localhost:3000/user/register", {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     name,
+    //     email,
+    //     password,
+    //   }),
+    //   headers: {
+    //     "Content-type": "application/json; charset=UTF-8",
+    //   },
+    // });v
+    const response = await fetch("https://blogged-ujz4.onrender.com/user/register", {
       method: "POST",
       body: JSON.stringify({
         name,

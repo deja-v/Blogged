@@ -37,7 +37,8 @@ export default function MainContent() {
   let show = samplePosts.length ? true : false;
   useEffect(() => {
     async function getPosts() {
-      const response = await fetch("http://localhost:3000/posts");
+      // const response = await fetch("http://localhost:3000/posts");
+      const response = await fetch("https://blogged-ujz4.onrender.com/posts");
       const data = await response.json();
       if (!data.length) return;
       const sortedPosts = [...data].sort(
