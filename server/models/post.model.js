@@ -1,19 +1,19 @@
-import { Schema,model } from "mongoose";
+import { Schema, model } from "mongoose";
 const postSchema = new Schema(
   {
     title: {
       type: String,
       required: true,
     },
-    heading:{
-        type: String,
-        required: true,
+    heading: {
+      type: String,
+      required: true,
     },
     body: {
       type: String,
       required: true,
     },
-    userName:{
+    userName: {
       type: String,
       required: true,
     },
@@ -34,5 +34,3 @@ const postSchema = new Schema(
 );
 
 export const Post = model("Post", postSchema);
-
-

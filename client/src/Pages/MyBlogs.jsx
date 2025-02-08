@@ -1,5 +1,5 @@
-import BlogPostList from "../components/blogPostList"
-import { useEffect,useState } from "react"
+import BlogPostList from "../components/blogPostList";
+import { useEffect, useState } from "react";
 // const samplePosts = [
 //     { id: 1, title: "Getting Started with React", author: "John Doe", date: "2023-05-01", excerpt: "Learn the basics of React and start building your first app.", imageUrl: "/placeholder.svg?height=200&width=200" },
 //     { id: 2, title: "Advanced Next.js Techniques", author: "Jane Smith", date: "2023-05-05", excerpt: "Explore advanced features and optimizations in Next.js.", imageUrl: "/placeholder.svg?height=200&width=200" },
@@ -16,58 +16,59 @@ import { useEffect,useState } from "react"
 //   ]
 
 function formatDate(dateString) {
-    const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0'); 
-    const year = date.getFullYear();
-    return `${day}-${month}-${year}`;
-  }
+  const date = new Date(dateString);
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+  return `${day}-${month}-${year}`;
+}
 
-  function formatDatesForPosts(posts) {
-    return posts.map(post => ({
-      ...post,
-      formattedCreatedOn: formatDate(post.createdOn),
-      formattedCreatedAt: formatDate(post.createdAt),
-      formattedUpdatedAt: formatDate(post.updatedAt)
-    }));
-  }
+function formatDatesForPosts(posts) {
+  return posts.map((post) => ({
+    ...post,
+    formattedCreatedOn: formatDate(post.createdOn),
+    formattedCreatedAt: formatDate(post.createdAt),
+    formattedUpdatedAt: formatDate(post.updatedAt),
+  }));
+}
 
-export default function MainContent(){
-    const [samplePosts, setSamplePosts] = useState([])
+export default function MainContent() {
+  const [samplePosts, setSamplePosts] = useState([]);
 
-    useEffect(()=>{
-        async function getPosts() {
-          if(!localStorage.getItem("user")){
-            alert("Please login first")
-            window.location.href = "http://localhost:5173/login"
-          }
-          const token = JSON.parse(localStorage.getItem("user")).user
-          const response = await fetch("http://localhost:3000/myposts",{
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-            }
-          })
-          const data = await response.json()
-         
-          const posts = data.data
-          console.log(data);
-          
-          const sortedPosts = [...posts].sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
-          const formattedPosts = formatDatesForPosts(sortedPosts);
-          
-          setSamplePosts(formattedPosts)
-          
-        }
-        getPosts();
-      },[])
+  useEffect(() => {
+    async function getPosts() {
+      if (!localStorage.getItem("user")) {
+        alert("Please login first");
+        window.location.href = "http://localhost:5173/login";
+      }
+      const token = JSON.parse(localStorage.getItem("user")).user;
+      const response = await fetch("http://localhost:3000/myposts", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
 
-    return (
-        <main className="mainContent">
-            <div className="container">
-            <h1 className="pageTitle">My Blog Posts</h1>
-            <BlogPostList posts={samplePosts} user={true}/>
-            </div>
-        </main>
-    )
+      const posts = data.data;
+      console.log(data);
+
+      const sortedPosts = [...posts].sort(
+        (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
+      );
+      const formattedPosts = formatDatesForPosts(sortedPosts);
+
+      setSamplePosts(formattedPosts);
+    }
+    getPosts();
+  }, []);
+
+  return (
+    <main className="mainContent">
+      <div className="container">
+        <h1 className="pageTitle">My Blog Posts</h1>
+        <BlogPostList posts={samplePosts} user={true} />
+      </div>
+    </main>
+  );
 }

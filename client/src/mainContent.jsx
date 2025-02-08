@@ -1,5 +1,5 @@
-import BlogPostList from "./components/blogPostList"
-import { useEffect,useState } from "react"
+import BlogPostList from "./components/blogPostList";
+import { useEffect, useState } from "react";
 // const samplePosts = [
 //     { id: 1, title: "Getting Started with React", author: "John Doe", date: "2023-05-01", excerpt: "Learn the basics of React and start building your first app.", imageUrl: "/placeholder.svg?height=200&width=200" },
 //     { id: 2, title: "Advanced Next.js Techniques", author: "Jane Smith", date: "2023-05-05", excerpt: "Explore advanced features and optimizations in Next.js.", imageUrl: "/placeholder.svg?height=200&width=200" },
@@ -16,45 +16,47 @@ import { useEffect,useState } from "react"
 //   ]
 
 function formatDate(dateString) {
-    const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0'); 
-    const year = date.getFullYear();
-    return `${day}-${month}-${year}`;
-  }
+  const date = new Date(dateString);
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+  return `${day}-${month}-${year}`;
+}
 
-  function formatDatesForPosts(posts) {
-    return posts.map(post => ({
-      ...post,
-      formattedCreatedOn: formatDate(post.createdOn),
-      formattedCreatedAt: formatDate(post.createdAt),
-      formattedUpdatedAt: formatDate(post.updatedAt)
-    }));
-  }
+function formatDatesForPosts(posts) {
+  return posts.map((post) => ({
+    ...post,
+    formattedCreatedOn: formatDate(post.createdOn),
+    formattedCreatedAt: formatDate(post.createdAt),
+    formattedUpdatedAt: formatDate(post.updatedAt),
+  }));
+}
 
-export default function MainContent(){
-    const [samplePosts, setSamplePosts] = useState([])
-    let show = samplePosts.length? true: false
-    useEffect(()=>{
-        async function getPosts() {
-          const response = await fetch("http://localhost:3000/posts")
-          const data = await response.json()
-          if(!data.length) return
-          const sortedPosts = [...data].sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
-          const formattedPosts = formatDatesForPosts(sortedPosts);
-          
-          setSamplePosts(formattedPosts)
-        }
-        getPosts();
-      },[])
+export default function MainContent() {
+  const [samplePosts, setSamplePosts] = useState([]);
+  let show = samplePosts.length ? true : false;
+  useEffect(() => {
+    async function getPosts() {
+      const response = await fetch("http://localhost:3000/posts");
+      const data = await response.json();
+      if (!data.length) return;
+      const sortedPosts = [...data].sort(
+        (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
+      );
+      const formattedPosts = formatDatesForPosts(sortedPosts);
 
-    return (
-        <main className="mainContent">
-            <div className="container">
-            {show && <h1 className="pageTitle">Latest Blog Posts</h1>}
-            {!show && <h1 className="pageTitle">No Blog Posts to Show</h1>}
-            <BlogPostList posts={samplePosts} user={false} />
-            </div>
-        </main>
-    )
+      setSamplePosts(formattedPosts);
+    }
+    getPosts();
+  }, []);
+
+  return (
+    <main className="mainContent">
+      <div className="container">
+        {show && <h1 className="pageTitle">Latest Blog Posts</h1>}
+        {!show && <h1 className="pageTitle">No Blog Posts to Show</h1>}
+        <BlogPostList posts={samplePosts} user={false} />
+      </div>
+    </main>
+  );
 }

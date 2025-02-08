@@ -15,7 +15,7 @@ export default function CreatePost() {
     formData.append("body", body);
     formData.append("image", files[0]); 
     const token = JSON.parse(localStorage.getItem("user")).user
-    const response = await fetch('http://localhost:3000',{
+    const response = await fetch('http://localhost:3000/create',{
         method: "POST",
         body: formData,
         headers: {
@@ -30,7 +30,8 @@ export default function CreatePost() {
         window.location.href = "http://localhost:5173"
     }
     else{
-        alert("Blog Post failed")
+        const data = await response.json()
+        alert(data.msg)
     }
     
   }
